@@ -1,0 +1,16 @@
+---
+const response = await fetch('http://127.0.0.1:1337/api/posts?populate=*');
+const { data } = await response.json();
+---
+
+<h1>The Blog</h1>
+
+{
+    data.map((post) => (
+      <>
+        <h2>{post.attributes.name}</h2>
+        <p>{post.attributes.description}</p>
+        <img src={`http://127.0.0.1:1337${post.attributes.header.data.attributes.url}`} alt={post.attributes.header.data.attributes.name}>
+      </>
+    ))
+}
